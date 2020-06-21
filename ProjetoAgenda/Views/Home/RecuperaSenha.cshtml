@@ -1,0 +1,35 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Recuperar Senha";
+}
+
+<body class="text-center-login">
+    <form class="form-signin" asp-action="RecuperaSenha" asp-controller="Home" method="post">
+        <section class="container">
+            <div class="col-6 card" style="margin-top:30%">
+                <h1 class="h6 mb-2 font-weight-normal"><b>Recupere a senha para ter acesso a sua agenda</b></h1>
+
+                <input type="email" asp-for="Email" class="form-control" placeholder="email@dominio.com" autofocus>
+                <span asp-validation-for="Email"></span>
+
+                <input type="submit" class="btn btn-group-lg btn-primary btn-block" value="Recuperar Senha" />
+
+                @if (ViewData["MSG_S"] != null)
+                {
+                    <br />
+                    <p class="alert alert-info">@Html.Raw(ViewData["MSG_S"])</p>
+                }
+                else if (ViewData["MSG_E"] != null)
+                {
+                    <br />
+                    <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
+                }
+                else
+                {
+                    <br />
+                }
+            </div>
+        </section>
+    </form>
+</body>
+

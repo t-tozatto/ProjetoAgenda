@@ -1,0 +1,90 @@
+﻿@model List<Contato>
+@{
+    ViewData["Title"] = ViewData["MSG_E"];
+}
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+    <div class="card card-default" id="card_contacts">
+        <div id="contacts" class="panel-collapse collapse show" aria-expanded="true" style="margin-top:5%">
+            @{
+                if (Model != null)
+                {
+                        <div class="py-md-3 text-center">
+                            <h4>Seus contatos</h4>
+                        </div>
+
+                    @if (ViewData["MSG_E"] != null)
+                    {
+                        <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
+                    }
+
+                    <ul class="list-group pull-down" id="contact-list">
+                        @foreach (Contato contato in Model)
+                        {
+                            <li class="list-group-item">
+                                <div class="row w-100">
+                                    <div class="col-12 col-sm-6 col-md-3 px-0">
+                                        <img src="~/image/contato_fixo.png" alt=contato.Nome class="rounded-circle mx-auto d-block img-fluid" width="128" height="128">
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-9 text-center text-sm-left">
+
+                                        @Html.ActionLink("", "AlterarContato", new { id = contato.Id, idUsuario = contato.IdUsuario }, new { @class = "fa fa-edit float-right pulse", @style = "color:black;font-size:24px" })
+                                        <label class="name lead">@string.Concat(contato.Nome, " ", contato.Sobrenome)</label>
+                                        <br>
+
+                                        @Html.ActionLink("", "ExcluirContato", new { idContato = contato.Id, idUsuario = contato.IdUsuario }, new { @class = "fa fa-times float-right pulse", @style = "color:red;font-size:24px" })
+
+                                        @if (!string.IsNullOrWhiteSpace(contato.Telefone))
+                                        {
+                                            <span class="fa fa-phone fa-fw text-muted" data-toggle="tooltip" title="" data-original-title=@contato.Telefone></span>
+                                            <span class="text-muted">@contato.Telefone</span>
+                                            <br>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(contato.Email))
+                                        {
+                                            <span class="fa fa-envelope fa-fw text-muted" data-toggle="tooltip" title=@contato.Email></span>
+                                            <span class="text-muted small text-truncate">@contato.Email</span>
+                                            <br>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    @if (ViewData["MSG_E"] != null)
+                    {
+                        <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
+                    }
+                    else
+                    {
+                        <div id="notfound">
+                            <div class="notfound">
+                                <div class="notfound-404">
+                                    <h1>Oops!</h1>
+                                    <h2>Nenhum contato cadastrado</h2>
+                                </div>
+                                <a asp-action="CadastroContato">Cadastrar Contato</a>
+                            </div>
+                        </div>
+
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="e145d52c3151c88f38b3d825-text/javascript"></script>
+                        <script type="e145d52c3151c88f38b3d825-text/javascript">
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+
+                            gtag('config', 'UA-23581568-13');
+                        </script>
+                        <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="e145d52c3151c88f38b3d825-|49" defer=""></script>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>

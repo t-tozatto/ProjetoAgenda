@@ -1,0 +1,32 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Página Inicial";
+}
+
+<body class="text-center-login">
+    <form class="form-signin" asp-action="Index" asp-controller="Home" method="post">
+        <section class="container">
+            <div class="col-6 card" style="margin-top:30%">
+                <h1 class="h6 mb-2 font-weight-normal"><b>Faça login para consultar sua agenda!</b></h1>
+
+                <input type="text" asp-for="Nome" class="form-control" placeholder="Usuário" autofocus>
+
+                <input type="password" asp-for="Senha" class="form-control" placeholder="Senha">
+
+                <input type="submit" class="btn btn-group-lg btn-primary btn-block" value="Fazer login"/>
+
+                <a asp-action="RecuperaSenha">Esqueceu sua senha?</a>
+                <br />
+                Ainda não tem uma conta? <a asp-action="CadastroUsuario">Cadastre-se</a>
+
+                @if (ViewData["MSG_E"] != null)
+                {
+                    <br />
+                    <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
+                }
+
+            </div>
+        </section>
+    </form>
+</body>
+

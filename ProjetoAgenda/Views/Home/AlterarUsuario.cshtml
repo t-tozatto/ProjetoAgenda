@@ -1,0 +1,71 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Alterar Usuário";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<form asp-action="AlterarUsuario" asp-controller="Home" method="post">
+    <div class="container" style="margin-top:10%">
+        <div class="py-md-3 text-center">
+            <h4>Altere suas informações</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-8 order-md-1">
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label asp-for="Email">E-mail</label>
+                        <input type="email" asp-for="Email" class="form-control" placeholder="email@dominio.com" value=@Model.Email>
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label asp-for="Nome">Usuário</label>
+                        <input type="text" asp-for="Nome" class="form-control" placeholder="" value=@Model.Nome>
+                        <span asp-validation-for="Nome"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label asp-for="Senha">Senha</label>
+                        <input type="password" asp-for="Senha" class="form-control" placeholder="Senha">
+                        <span asp-validation-for="Senha"></span>
+                        <meter max="4" id="password-strength" style="visibility:hidden; display:inline"></meter>
+                        <p id="password-strength-text" style="display:inline"></p>
+
+                        <script>
+                            MedirSenha(document.getElementById('Senha'), document.getElementById('password-strength'), document.getElementById('password-strength-text'));
+                        </script>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-success btn-lg btn-block" type="submit">Alterar</button>
+
+
+                @if (ViewData["MSG_E"] != null)
+                {
+                    <br />
+                    <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
+                }
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <input type="hidden" asp-for="Id" class="form-control" placeholder="" value=@Model.Id>
+                        <span asp-validation-for="Id"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="form-validation.js"></script>
+</form>

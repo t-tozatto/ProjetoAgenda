@@ -1,0 +1,55 @@
+﻿@model Contato
+@{
+    ViewData["Title"] = "Cadastro Contato";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<form asp-action="CadastroContato" asp-controller="Home" method="post">
+    <div class="container" style="margin-top:10%">
+        <div class="py-md-3 text-center">
+            <h4>Crie seus contatos</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-8 order-md-1">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Nome">Nome</label>
+                        <input type="text" asp-for="Nome" class="form-control" placeholder="">
+                        <span asp-validation-for="Nome"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Sobrenome">Sobrenome</label>
+                        <input type="text" asp-for="Sobrenome" class="form-control">
+                        <span asp-validation-for="Sobrenome"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Email">E-mail</label>
+                        <input type="email" asp-for="Email" class="form-control" placeholder="email@dominio.com">
+                        <span asp-validation-for="Email"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Telefone">Telefone</label>
+                        <input type="text" asp-for="Telefone" class="form-control" placeholder="(99) 99999-9999" onblur="MascaraDeTelefone(this)" onfocus="TiraHifen(this)">
+                        <span asp-validation-for="Telefone"></span>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-success btn-lg btn-block" type="submit">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+    <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="form-validation.js"></script>
+</form>
